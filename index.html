@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RAMmageddon — The Global Memory Crisis 2025</title>
+  <meta name="description" content="DRAM prices up 171%. DDR5 quadrupled. Global inventory at 2-week lows. The RAM shortage is real."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --red:#C8211A;--red2:#9e1812;--red-light:#f8ecea;
+      --amber:#B85C00;--green:#1a6b3a;
+      --bg:#F5F0E8;--bg2:#EDE8DF;--bg3:#E4DDD2;--card:#FDFAF5;
+      --border:rgba(30,20,10,0.12);--border-s:rgba(30,20,10,0.22);
+      --text:#1A1208;--text2:#3D3020;--muted:#7A6E5F;
+      --mono:'JetBrains Mono',monospace;
+      --serif:'Playfair Display',serif;
+      --body:'Source Serif 4',serif;
+      --ui:'Inter',sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--body);background:var(--bg);color:var(--text);overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:12px 36px;background:rgba(245,240,232,0.96);backdrop-filter:blur(12px);border-bottom:2px solid var(--text)}
+    .nav-logo{font-family:var(--mono);font-size:12px;color:var(--red);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .nav-links{display:flex;gap:24px}
+    .nav-links a{font-family:var(--mono);font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+    .nav-links a:hover{color:var(--text)}
+    .nav-share{font-family:var(--mono);font-size:11px;background:var(--red);color:#fff;border:none;border-radius:2px;padding:7px 16px;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:background .2s}
+    .nav-share:hover{background:var(--red2)}
+
+    .ticker-wrap{overflow:hidden;white-space:nowrap;background:var(--red);color:#fff;padding:7px 0;font-family:var(--mono);font-size:11px;letter-spacing:.06em;margin-top:50px}
+    .ticker-inner{display:inline-block;animation:ticker 34s linear infinite}
+    @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .tsep{margin:0 28px;opacity:.45}
+
+    .hero{padding:64px 28px 56px;border-bottom:3px double var(--border-s);max-width:1000px;margin:0 auto;text-align:center}
+    .dateline{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:16px}
+    .dateline::before,.dateline::after{content:'';flex:1;height:1px;background:var(--border-s);max-width:120px}
+    .live-badge{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;border-radius:2px;padding:5px 14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px}
+    .live-dot{width:7px;height:7px;border-radius:50%;background:#fff;animation:dot 1.2s ease-in-out infinite}
+    @keyframes dot{0%,100%{opacity:1}50%{opacity:.2}}
+    .hero h1{font-family:var(--serif);font-size:clamp(64px,12vw,148px);font-weight:900;line-height:.88;color:var(--text);margin-bottom:4px}
+    .hero h1 .red{color:var(--red)}
+    .hero-rule{display:flex;align-items:center;gap:12px;margin:22px auto;max-width:600px}
+    .hero-rule::before,.hero-rule::after{content:'';flex:1;height:2px;background:var(--text)}
+    .hero-rule span{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted);white-space:nowrap;text-transform:uppercase}
+    .hero-deck{font-family:var(--body);font-size:17px;font-style:italic;color:var(--text2);line-height:1.75;margin:0 auto;max-width:620px}
+    .hero-deck strong{font-style:normal;color:var(--red);font-weight:600}
+
+    .stat-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--text);border-bottom:2px solid var(--text);background:var(--card)}
+    .stat-cell{padding:28px 20px;text-align:center;border-right:1px solid var(--border-s)}
+    .stat-cell:last-child{border-right:none}
+    .stat-num{font-family:var(--serif);font-weight:900;font-size:clamp(32px,4.5vw,54px);color:var(--red);line-height:1;display:block}
+    .stat-num.am{color:var(--amber)}.stat-num.bk{color:var(--text)}
+    .stat-label{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:7px;letter-spacing:.07em;text-transform:uppercase;display:block}
+    .stat-sub{font-family:var(--mono);font-size:9px;color:var(--muted);opacity:.7;margin-top:3px;display:block}
+
+    .container{max-width:960px;margin:0 auto;padding:0 28px}
+    section{padding:80px 0;border-top:1px solid var(--border-s)}
+    .section-head{display:flex;align-items:baseline;gap:16px;margin-bottom:28px}
+    .eyebrow{font-family:var(--mono);font-size:10px;color:var(--red);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+    .eyebrow-rule{flex:1;height:1px;background:var(--border-s)}
+    h2{font-family:var(--serif);font-weight:900;font-size:clamp(38px,5.5vw,64px);line-height:.95;margin-bottom:24px;color:var(--text)}
+    p{font-size:16px;line-height:1.85;color:var(--text2);margin-bottom:18px;max-width:700px}
+    p strong{color:var(--text);font-weight:600}
+    p a{color:var(--red);text-decoration:none;border-bottom:1px solid rgba(200,33,26,.3);transition:.2s}
+    p a:hover{border-color:var(--red)}
+
+    .pullquote{border-left:4px solid var(--red);padding:16px 24px;margin:28px 0;background:var(--red-light);border-radius:0 4px 4px 0}
+    .pullquote p{font-size:15px;font-style:italic;color:var(--text2);margin:0;max-width:none}
+    .pullquote cite{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.06em;display:block;margin-top:8px;font-style:normal}
+
+    .price-chart{background:var(--card);border:1px solid var(--border-s);border-radius:4px;padding:28px;margin:32px 0}
+    .chart-head{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+    .chart-bars{display:flex;align-items:flex-end;gap:5px;height:150px;border-left:1px solid var(--border-s);border-bottom:1px solid var(--border-s);padding:0 0 10px 10px}
+    .bg{display:flex;flex-direction:column;align-items:center;flex:1;gap:5px;height:100%}
+    .bar{width:100%;border-radius:2px 2px 0 0;margin-top:auto;transition:opacity .2s}
+    .bar:hover{opacity:1!important}
+    .bl{font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center;white-space:nowrap;margin-top:4px}
+    .chart-foot{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:10px;border-top:1px solid var(--border);padding-top:8px}
+
+    .timeline{margin:32px 0;padding-left:28px;position:relative}
+    .timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:2px;background:var(--border-s)}
+    .tl-item{position:relative;margin-bottom:28px}
+    .tl-dot{position:absolute;left:-34px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--red);border:2px solid var(--bg)}
+    .tl-dot.am{background:var(--amber)}.tl-dot.mu{background:var(--muted)}
+    .tl-date{font-family:var(--mono);font-size:10px;color:var(--red);letter-spacing:.07em;margin-bottom:5px;font-weight:700;text-transform:uppercase}
+    .tl-item:nth-child(1) .tl-date,.tl-item:nth-child(2) .tl-date{color:var(--muted)}
+    .tl-item:last-child .tl-date{color:var(--amber)}
+    .tl-text{font-size:14px;line-height:1.75;color:var(--text2);max-width:700px}
+    .tl-text strong{color:var(--text);font-weight:600}
+
+    .panic-meter{background:var(--card);border:1px solid var(--border-s);border-top:3px solid var(--red);padding:24px;margin:32px 0}
+    .pm-top{font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;text-transform:uppercase;letter-spacing:.06em}
+    .pm-top span{color:var(--red);font-size:12px;font-weight:700}
+    .pm-track{height:26px;background:var(--bg2);border:1px solid var(--border);overflow:hidden}
+    .pm-fill{height:100%;width:0%;background:linear-gradient(90deg,#9e1812,#C8211A 55%,#B85C00);animation:pm-grow 2.5s cubic-bezier(.23,1,.32,1) forwards .6s}
+    @keyframes pm-grow{to{width:94%}}
+    .pm-marks{display:flex;justify-content:space-between;margin-top:8px;font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+
+    .impact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:28px}
+    .impact-card{background:var(--card);border:1px solid var(--border-s);border-top:3px solid var(--border-s);padding:20px;transition:border-top-color .2s}
+    .impact-card:hover{border-top-color:var(--red)}
+    .ii{font-size:24px;margin-bottom:10px}
+    .it{font-family:var(--serif);font-weight:700;font-size:15px;margin-bottom:6px;color:var(--text)}
+    .id{font-size:13px;color:var(--muted);line-height:1.65;font-family:var(--ui)}
+    .in{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:10px;color:var(--red);background:var(--red-light);border:1px solid rgba(200,33,26,.2);padding:2px 8px}
+
+    .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin-top:28px}
+    .news-card{background:var(--card);border:1px solid var(--border-s);padding:18px;text-decoration:none;display:flex;flex-direction:column;gap:8px;transition:border-color .2s,box-shadow .2s}
+    .news-card:hover{border-color:var(--red);box-shadow:2px 2px 0 var(--red)}
+    .ns{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+    .nt{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--text);line-height:1.45}
+    .nd{font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:auto;padding-top:8px;border-top:1px solid var(--border)}
+    .ntag{display:inline-block;padding:2px 7px;font-family:var(--mono);font-size:9px;background:var(--red-light);color:var(--red);border:1px solid rgba(200,33,26,.2)}
+    .ntag.am{background:#fdf3e3;color:var(--amber);border-color:rgba(184,92,0,.2)}
+    .ntag.gr{background:#e8f5ee;color:var(--green);border-color:rgba(26,107,58,.2)}
+
+    .share-section{text-align:center;padding:72px 28px;border-top:3px double var(--border-s);background:var(--card)}
+    .share-section h2{font-family:var(--serif);font-size:clamp(36px,6vw,64px);color:var(--text);margin-bottom:12px}
+    .share-section p{max-width:460px;margin:0 auto 28px;font-size:15px;color:var(--muted);font-family:var(--ui)}
+    .share-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .sbtn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;font-family:var(--mono);font-size:11px;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:.2s;cursor:pointer;border:none;border-radius:2px}
+    .sbtn.tw{background:#000;color:#fff}.sbtn.tw:hover{background:#222}
+    .sbtn.li{background:#0077B5;color:#fff}.sbtn.li:hover{background:#005885}
+    .sbtn.cp{background:var(--bg2);color:var(--text);border:1px solid var(--border-s)}.sbtn.cp:hover{background:var(--bg3)}
+
+    footer{border-top:2px solid var(--text);padding:28px;text-align:center;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.04em;background:var(--bg)}
+    footer a{color:var(--muted);text-decoration:none}
+    footer a:hover{color:var(--text)}
+
+    @media(max-width:700px){
+      nav{padding:12px 18px}.nav-links{display:none}
+      .stat-strip{grid-template-columns:repeat(2,1fr)}
+      .stat-cell{border-bottom:1px solid var(--border-s)}
+      h2{font-size:clamp(36px,10vw,56px)}
+      section{padding:56px 0}
+      .hero{padding:40px 18px 40px}
+      .hero h1{font-size:clamp(56px,16vw,88px)}
+      .hero-deck{font-size:15px}
+      .dateline{font-size:9px;gap:8px}
+      .container{padding:0 18px}
+      .impact-grid{grid-template-columns:1fr}
+      .news-grid{grid-template-columns:1fr}
+      .share-btns{flex-direction:column;align-items:center}
+      .sbtn{width:100%;max-width:280px;justify-content:center}
+      .pullquote{padding:12px 16px}
+      .timeline{padding-left:20px}
+      .tl-dot{left:-26px}
+      .chart-bars{height:110px}
+      .bl{font-size:8px}
+      p{font-size:15px}
+    }
+    @media(max-width:380px){
+      .hero h1{font-size:clamp(48px,18vw,72px)}
+      .stat-num{font-size:clamp(26px,7vw,40px)}
+      .stat-cell{padding:18px 12px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Rammageddon.2025</span>
+  <div class="nav-links">
+    <a href="#crisis">Crisis</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#impact">Impact</a>
+    <a href="#news">News</a>
+  </div>
+  <button class="nav-share" onclick="shareNow()">&#9888; Share Crisis</button>
+</nav>
+
+<div class="ticker-wrap">
+  <span class="ticker-inner">
+    DRAM UP 171% YOY <span class="tsep">|</span> DDR5 QUADRUPLED SINCE SEP 2025 <span class="tsep">|</span> GLOBAL INVENTORY: 2&#x2013;4 WEEKS <span class="tsep">|</span> HP: MEMORY NOW 35% OF PC BUILD COST <span class="tsep">|</span> SHORTAGE WON&#x27;T END UNTIL 2027 <span class="tsep">|</span> OPENAI CONSUMING 40% OF GLOBAL DRAM OUTPUT <span class="tsep">|</span> DELL: &#x22;NEVER WITNESSED COSTS ESCALATING AT THIS PACE&#x22; <span class="tsep">|</span> SK HYNIX OVERTAKES SAMSUNG IN DRAM REVENUE FOR FIRST TIME SINCE 1992 <span class="tsep">|</span> TIM COOK WARNS OF COMPRESSED iPHONE MARGINS <span class="tsep">|</span> DRAM UP 171% YOY <span class="tsep">|</span> DDR5 QUADRUPLED SINCE SEP 2025 <span class="tsep">|</span> GLOBAL INVENTORY: 2&#x2013;4 WEEKS <span class="tsep">|</span> HP: MEMORY NOW 35% OF PC BUILD COST <span class="tsep">|</span> SHORTAGE WON&#x27;T END UNTIL 2027 <span class="tsep">|</span> OPENAI CONSUMING 40% OF GLOBAL DRAM OUTPUT <span class="tsep">|</span> DELL: &#x22;NEVER WITNESSED COSTS ESCALATING AT THIS PACE&#x22; <span class="tsep">|</span> SK HYNIX OVERTAKES SAMSUNG IN DRAM REVENUE FOR FIRST TIME SINCE 1992 <span class="tsep">|</span>
+  </span>
+</div>
+
+<div style="background:var(--bg)">
+  <div class="hero">
+    <div class="dateline"><span>March 2026</span><span>&#183;</span><span>Global Supply Crisis</span><span>&#183;</span><span>Ongoing</span></div>
+    <div class="live-badge"><div class="live-dot"></div>Live Crisis &#8212; Ongoing Since 2024</div>
+    <h1><span class="red">RAM</span><br/>MAGEDDON</h1>
+    <div class="hero-rule"><span>The Global Memory Shortage</span></div>
+    <p class="hero-deck">The world is running out of RAM. <strong>DRAM prices surged 171%</strong> year-over-year. DDR5 spot prices <strong>quadrupled</strong> since September 2025. Global inventory collapsed to <strong>2&#x2013;4 weeks of supply</strong>. No relief until <strong>2027 at the earliest</strong>.</p>
+  </div>
+</div>
+
+<div class="stat-strip">
+  <div class="stat-cell"><span class="stat-num">+171%</span><span class="stat-label">DRAM Price YoY</span><span class="stat-sub">TrendForce / Reuters, Oct 2025</span></div>
+  <div class="stat-cell"><span class="stat-num am">4&#xD7;</span><span class="stat-label">DDR5 Price Since Sep &#x27;25</span><span class="stat-sub">BISI Report, Feb 2026</span></div>
+  <div class="stat-cell"><span class="stat-num">2 wks</span><span class="stat-label">Global Inventory Left</span><span class="stat-sub">Down from 13&#x2013;17 weeks in 2024</span></div>
+  <div class="stat-cell"><span class="stat-num bk">2027</span><span class="stat-label">Earliest Recovery</span><span class="stat-sub">New fabs won&#x27;t be online before then</span></div>
+</div>
+
+<div class="container">
+
+<section id="crisis">
+  <div class="section-head"><span class="eyebrow">01 &#x2014; What Happened</span><div class="eyebrow-rule"></div></div>
+  <h2>How AI<br/>Broke RAM</h2>
+  <p>The global RAM shortage was not caused by a natural disaster or a pandemic. It was <strong>deliberate</strong>. Memory manufacturers &#x2014; Samsung, SK Hynix, and Micron &#x2014; quietly shifted production from conventional DRAM toward <strong>High Bandwidth Memory (HBM)</strong>, the specialised chips powering AI accelerators like Nvidia&#x27;s H100.</p>
+  <p>Each gigabyte of HBM consumes <strong>roughly 3&#xD7; the wafer capacity</strong> of DDR5. As AI data center demand exploded, manufacturers chased higher margins. The result: a structural collapse in commodity DRAM supply. The media now calls it <strong>&#x22;RAMmageddon&#x22;</strong> or <strong>&#x22;RAMpocalypse.&#x22;</strong></p>
+
+  <div class="pullquote">
+    <p>&#x201C;What began as an AI infrastructure boom has now rippled outward, with tightening memory supply, inflating prices, and reshaping product and pricing strategies across both consumer and enterprise devices.&#x201D;</p>
+    <cite>&#x2014; IDC, Global Memory Shortage Crisis Report, February 2026</cite>
+  </div>
+
+  <div class="price-chart">
+    <div class="chart-head">DDR5 Relative Price Index (Q1 2024 = baseline) &#x2014; based on reported data</div>
+    <div class="chart-bars">
+      <div class="bg"><div class="bar" style="height:11%;background:var(--muted);opacity:.3"></div><div class="bl">Q1&#x27;24</div></div>
+      <div class="bg"><div class="bar" style="height:14%;background:var(--muted);opacity:.3"></div><div class="bl">Q2&#x27;24</div></div>
+      <div class="bg"><div class="bar" style="height:17%;background:var(--muted);opacity:.35"></div><div class="bl">Q3&#x27;24</div></div>
+      <div class="bg"><div class="bar" style="height:21%;background:var(--muted);opacity:.35"></div><div class="bl">Q4&#x27;24</div></div>
+      <div class="bg"><div class="bar" style="height:25%;background:var(--muted);opacity:.4"></div><div class="bl">Q1&#x27;25</div></div>
+      <div class="bg"><div class="bar" style="height:29%;background:var(--muted);opacity:.4"></div><div class="bl">Q2&#x27;25</div></div>
+      <div class="bg"><div class="bar" style="height:50%;background:var(--red);opacity:.6"></div><div class="bl">Q3&#x27;25</div></div>
+      <div class="bg"><div class="bar" style="height:70%;background:var(--red);opacity:.7"></div><div class="bl">Oct&#x27;25</div></div>
+      <div class="bg"><div class="bar" style="height:86%;background:var(--red);opacity:.8"></div><div class="bl">Nov&#x27;25</div></div>
+      <div class="bg"><div class="bar" style="height:95%;background:var(--red);opacity:.9"></div><div class="bl">Dec&#x27;25</div></div>
+      <div class="bg"><div class="bar" style="height:100%;background:var(--red)"></div><div class="bl">Now &#x25B2;</div></div>
+    </div>
+    <div class="chart-foot">&#x26A0; DDR5 spot prices +307% since Sep 2025 &#x2014; Assured Systems / TrendForce data</div>
+  </div>
+
+  <p><strong>OpenAI&#x27;s Stargate Project</strong> alone is expected to consume up to <strong>40% of global DRAM output</strong>, requiring approximately 900,000 wafers per month. Cloud giants placed open-ended supply agreements, absorbing chips before smaller buyers could access them.</p>
+
+  <div class="panic-meter">
+    <div class="pm-top"><span>Global Supply Crisis Severity</span><span>Critical &#x2014; 94%</span></div>
+    <div class="pm-track"><div class="pm-fill"></div></div>
+    <div class="pm-marks"><span>Normal</span><span>Elevated</span><span>Shortage</span><span>Crisis</span><span>&#x26A0; Now</span></div>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="section-head"><span class="eyebrow">02 &#x2014; How We Got Here</span><div class="eyebrow-rule"></div></div>
+  <h2>The Road<br/>to Crisis</h2>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-dot mu"></div><div class="tl-date">2022&#x2013;2023</div><div class="tl-text">Post-pandemic demand crash. DRAM oversupply. Manufacturers cut production to stabilise prices. <strong>No new fab investments made</strong> &#x2014; a decision that would prove catastrophic within two years.</div></div>
+    <div class="tl-item"><div class="tl-dot mu"></div><div class="tl-date">Late 2024</div><div class="tl-text">AI boom quietly accelerates. Manufacturers begin diverting wafer capacity to HBM. Analysts predict a price bottom &#x2014; <strong>they were wrong</strong>. DRAM inventory at a comfortable 13&#x2013;17 weeks. A false sense of security.</div></div>
+    <div class="tl-item"><div class="tl-dot am"></div><div class="tl-date">September 10, 2025</div><div class="tl-text"><strong>The inflection point.</strong> Citigroup issues a shortage warning. Memory prices projected to increase sharply into Q4 2025 and 2026. Contract prices for DRAM and NAND begin rising up to 20% per quarter.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">October 13, 2025</div><div class="tl-text">Reuters reports DRAM prices up <strong>170%+ year-over-year</strong>. Japanese chains report only 2&#x2013;4 weeks of DRAM on hand, down from 13&#x2013;17 weeks. OpenAI announces the Samsung / SK Hynix Stargate partnership.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">November 2025</div><div class="tl-text">NAND wafer prices surge <strong>60%+ month-over-month</strong>. Dell COO Jeff Clarke: <em>&#x22;Never witnessed costs escalating at the current pace.&#x22;</em> Lenovo discloses memory inventories 50% above normal to hedge against further spikes.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">February 2026</div><div class="tl-text">Bloomberg: Musk and Tim Cook warn of a deepening crisis. Apple warns of <strong>compressed iPhone margins</strong>. Micron calls the bottleneck &#x22;unprecedented.&#x22; HP reveals memory now accounts for <strong>35% of PC build costs</strong>, up from 15&#x2013;18% last quarter.</div></div>
+    <div class="tl-item"><div class="tl-dot am"></div><div class="tl-date">2027+ &#x2014; Best Case</div><div class="tl-text">Samsung&#x27;s Texas fab, SK Hynix&#x27;s Korea mega-cluster, and Micron&#x27;s Japan plant all scheduled online. <strong>No meaningful relief before late 2027.</strong> IDC warns effects could persist well beyond.</div></div>
+  </div>
+</section>
+
+<section id="impact">
+  <div class="section-head"><span class="eyebrow">03 &#x2014; Who Gets Hurt</span><div class="eyebrow-rule"></div></div>
+  <h2>Everything<br/>Is Affected</h2>
+  <p>Memory is in everything. When RAM prices explode, the entire technology stack reprices. There are no winners except the manufacturers themselves &#x2014; and even they are warning this may not last.</p>
+  <div class="impact-grid">
+    <div class="impact-card"><div class="ii">&#x1F4BB;</div><div class="it">PC Buyers</div><div class="id">Dell and Lenovo announcing 15&#x2013;20% price hikes from Dec 2025. Memory now 35% of PC build cost (was 15%). TrendForce revised 2026 PC market from +1.7% to &#x2212;2.6% growth.</div><span class="in">+15&#x2013;20% PC prices</span></div>
+    <div class="impact-card"><div class="ii">&#x1F4F1;</div><div class="it">Smartphone Users</div><div class="id">Up to 30% price increases expected. 2026 flagship iPhones likely staying at 12GB RAM &#x2014; no upgrade. Budget brands face existential margin compression.</div><span class="in">Up to +30% cost</span></div>
+    <div class="impact-card"><div class="ii">&#x2601;&#xFE0F;</div><div class="it">Cloud &amp; Enterprise</div><div class="id">Hyperscalers will pass through memory cost increases to enterprise customers. Server, storage, and networking gear all exposed. Procurement faces unpredictable lead times.</div><span class="in">Rising cloud bills</span></div>
+    <div class="impact-card"><div class="ii">&#x1F3AE;</div><div class="it">Gamers &amp; Builders</div><div class="id">DDR5 32GB kits cost substantially more than in early 2025. Spot prices up 307% since September. A historically bad time to build or upgrade a PC.</div><span class="in">DDR5 +307%</span></div>
+    <div class="impact-card"><div class="ii">&#x1F697;</div><div class="it">Automotive</div><div class="id">Automakers face realistic possibility of production disruptions by 2028 as legacy DRAM is retired for HBM. Hard disk supply for 2026 was fully booked before February.</div><span class="in">At risk by 2028</span></div>
+    <div class="impact-card"><div class="ii">&#x1F3ED;</div><div class="it">Small Manufacturers</div><div class="id">Budget OEMs operate on thin margins and cannot absorb costs the way Apple and Samsung can. Market consolidation is accelerating. Smaller brands face acquisition or exit.</div><span class="in">Existential pressure</span></div>
+  </div>
+</section>
+
+<section id="news">
+  <div class="section-head"><span class="eyebrow">04 &#x2014; Essential Reading</span><div class="eyebrow-rule"></div></div>
+  <h2>What the<br/>World Is Saying</h2>
+  <p>The crisis is being tracked by every major outlet. These are the essential links &#x2014; read them, share them, understand what is coming.</p>
+  <div class="news-grid">
+    <a class="news-card" href="https://www.bloomberg.com/news/articles/2026-02-15/rampant-ai-demand-for-memory-is-fueling-a-growing-chip-crisis" target="_blank" rel="noopener"><div class="ns">Bloomberg</div><div class="nt">AI Boom Driving a Global Memory Chip Shortage, Sending Prices Soaring</div><span class="ntag">Breaking</span><div class="nd">Feb 15, 2026 &#x2014; Musk &amp; Cook warn of crisis</div></a>
+    <a class="news-card" href="https://en.wikipedia.org/wiki/2024%E2%80%932026_global_memory_supply_shortage" target="_blank" rel="noopener"><div class="ns">Wikipedia</div><div class="nt">2024&#x2013;2026 Global Memory Supply Shortage &#x2014; Full Overview</div><span class="ntag am">Reference</span><div class="nd">Continuously updated &#x2014; comprehensive timeline</div></a>
+    <a class="news-card" href="https://www.idc.com/resource-center/blog/global-memory-shortage-crisis-market-analysis-and-the-potential-impact-on-the-smartphone-and-pc-markets-in-2026/" target="_blank" rel="noopener"><div class="ns">IDC</div><div class="nt">Global Memory Shortage: Impact on Smartphones and PCs in 2026</div><span class="ntag am">Analysis</span><div class="nd">Feb 10, 2026 &#x2014; Market scenarios &amp; forecasts</div></a>
+    <a class="news-card" href="https://bisi.org.uk/reports/global-ram-shortage-and-price-hikes-causes-consequences-and-market-outlook" target="_blank" rel="noopener"><div class="ns">BISI</div><div class="nt">Global RAM Shortage: Causes, Consequences &amp; Market Outlook</div><span class="ntag">Deep Dive</span><div class="nd">Feb 1, 2026 &#x2014; DRAM +171%, DDR5 quadrupled</div></a>
+    <a class="news-card" href="https://spectrum.ieee.org/dram-shortage" target="_blank" rel="noopener"><div class="ns">IEEE Spectrum</div><div class="nt">How and When the Memory Chip Shortage Will End</div><span class="ntag gr">Recovery</span><div class="nd">Mar 9, 2026 &#x2014; New fabs won&#x27;t help until 2027+</div></a>
+    <a class="news-card" href="https://intuitionlabs.ai/articles/ram-shortage-2025-ai-demand" target="_blank" rel="noopener"><div class="ns">IntuitionLabs</div><div class="nt">RAM Shortage 2025: How AI Demand is Raising DRAM Prices</div><span class="ntag am">Technical</span><div class="nd">Dec 2, 2025 &#x2014; Fab timelines, rationing, HBM explained</div></a>
+    <a class="news-card" href="https://www.z2data.com/insights/how-ai-forces-are-spurring-a-memory-chip-shortage" target="_blank" rel="noopener"><div class="ns">Z2Data</div><div class="nt">How AI Forces Are Spurring a Memory Chip Shortage</div><span class="ntag">Supply Chain</span><div class="nd">2025 &#x2014; HBM cannibalisation &amp; procurement impact</div></a>
+    <a class="news-card" href="https://www.softcat.com/blog/global-memory-shortage" target="_blank" rel="noopener"><div class="ns">Softcat</div><div class="nt">The Global RAM Shortage: What Technology Leaders Need to Know</div><span class="ntag gr">Enterprise</span><div class="nd">Dec 16, 2025 &#x2014; Procurement survival guide</div></a>
+    <a class="news-card" href="https://www.assured-systems.com/dram-drought-understanding-the-2025-industrial-ram-supply-crisis/" target="_blank" rel="noopener"><div class="ns">Assured Systems</div><div class="nt">DRAM Drought: The 2025 Industrial RAM Supply Crisis Explained</div><span class="ntag am">Industrial</span><div class="nd">Dec 4, 2025 &#x2014; DDR5 spot prices +307%</div></a>
+  </div>
+</section>
+
+</div>
+
+<div class="share-section">
+  <h2>Spread<br/>the Word</h2>
+  <p>People are buying hardware right now without knowing prices are at historic highs. Share this page.</p>
+  <div class="share-btns">
+    <a class="sbtn tw" href="https://twitter.com/intent/tweet?text=RAM+prices+up+171%25+YoY.+DDR5+quadrupled.+2-week+global+inventory.+RAMmageddon+is+real.+%23RAMcrisis+%23RAMmageddon&url=https://jains99.github.io/aiatemyram/" target="_blank" rel="noopener">&#x1D54F; Share on X</a>
+    <a class="sbtn li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://jains99.github.io/aiatemyram/" target="_blank" rel="noopener">in Share on LinkedIn</a>
+    <button class="sbtn cp" onclick="copyLink()">&#x1F517; Copy Link</button>
+  </div>
+</div>
+
+<footer>
+  <p>Data sourced from <a href="https://www.bloomberg.com" target="_blank">Bloomberg</a>, <a href="https://www.idc.com" target="_blank">IDC</a>, <a href="https://bisi.org.uk" target="_blank">BISI</a>, <a href="https://spectrum.ieee.org" target="_blank">IEEE Spectrum</a>, <a href="https://en.wikipedia.org/wiki/2024%E2%80%932026_global_memory_supply_shortage" target="_blank">Wikipedia</a> &amp; TrendForce &#x2014; March 2026</p>
+  <p style="margin-top:8px">Built by <a href="https://github.com/jains99" target="_blank">jains99</a> &#x2014; <a href="https://github.com/jains99/aiatemyram" target="_blank">View on GitHub</a></p>
+</footer>
+
+<script>
+function copyLink(){
+  navigator.clipboard.writeText('https://jains99.github.io/aiatemyram/').then(()=>{
+    const b=document.querySelector('.sbtn.cp');
+    b.textContent='Copied!';
+    setTimeout(()=>{b.textContent='Copy Link'},2000);
+  });
+}
+function shareNow(){
+  window.open('https://twitter.com/intent/tweet?text=DRAM+up+171%25.+DDR5+quadrupled.+2-week+global+inventory.+RAMmageddon+is+real.+%23RAMcrisis&url=https://jains99.github.io/aiatemyram/','_blank');
+}
+</script>
+</body>
+</html>
