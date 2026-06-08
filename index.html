@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RAMmageddon — The Global Memory Crisis 2025</title>
-  <meta name="description" content="DRAM prices up 171%. DDR5 quadrupled. Global inventory at 2-week lows. The RAM shortage is real."/>
+  <meta name="description" content="DDR5 32GB kit: $80 to $529 in one year. DRAM contract prices +90-95% in Q1 2026 alone. The global RAM shortage is real and getting worse."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
   <style>
@@ -80,6 +80,7 @@
     .bar{width:100%;border-radius:2px 2px 0 0;margin-top:auto;transition:opacity .2s}
     .bar:hover{opacity:1!important}
     .bl{font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center;white-space:nowrap;margin-top:4px}
+    .bv{font-family:var(--mono);font-size:8px;color:var(--red);font-weight:700;text-align:center;white-space:nowrap;line-height:1;margin-bottom:2px}
     .chart-foot{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:10px;border-top:1px solid var(--border);padding-top:8px}
 
     .timeline{margin:32px 0;padding-left:28px;position:relative}
@@ -211,22 +212,35 @@
   </div>
 
   <div class="price-chart">
-    <div class="chart-head">DDR5 Relative Price Index (Q1 2024 = baseline) &#x2014; based on reported data</div>
+    <div class="chart-head">DDR5 32GB Kit &#x2014; US Retail Price (USD) &#x2014; Tom&#x27;s Hardware / TechTimes</div>
     <div class="chart-bars">
-      <div class="bg"><div class="bar" style="height:11%;background:var(--muted);opacity:.3"></div><div class="bl">Q1&#x27;24</div></div>
-      <div class="bg"><div class="bar" style="height:14%;background:var(--muted);opacity:.3"></div><div class="bl">Q2&#x27;24</div></div>
-      <div class="bg"><div class="bar" style="height:17%;background:var(--muted);opacity:.35"></div><div class="bl">Q3&#x27;24</div></div>
-      <div class="bg"><div class="bar" style="height:21%;background:var(--muted);opacity:.35"></div><div class="bl">Q4&#x27;24</div></div>
-      <div class="bg"><div class="bar" style="height:25%;background:var(--muted);opacity:.4"></div><div class="bl">Q1&#x27;25</div></div>
-      <div class="bg"><div class="bar" style="height:29%;background:var(--muted);opacity:.4"></div><div class="bl">Q2&#x27;25</div></div>
-      <div class="bg"><div class="bar" style="height:50%;background:var(--red);opacity:.6"></div><div class="bl">Q3&#x27;25</div></div>
-      <div class="bg"><div class="bar" style="height:70%;background:var(--red);opacity:.7"></div><div class="bl">Oct&#x27;25</div></div>
-      <div class="bg"><div class="bar" style="height:86%;background:var(--red);opacity:.8"></div><div class="bl">Nov&#x27;25</div></div>
-      <div class="bg"><div class="bar" style="height:95%;background:var(--red);opacity:.9"></div><div class="bl">Dec&#x27;25</div></div>
-      <div class="bg"><div class="bar" style="height:100%;background:var(--red)"></div><div class="bl">Q1&#x27;26</div></div>
-      <div class="bg"><div class="bar" style="height:100%;background:var(--amber);animation:none"></div><div class="bl">Q2&#x27;26 &#x25B2;</div></div>
+      <div class="bg"><div class="bv">$90</div><div class="bar" style="height:17%;background:var(--muted);opacity:.3"></div><div class="bl">Q1&#x27;24</div></div>
+      <div class="bg"><div class="bv">$88</div><div class="bar" style="height:17%;background:var(--muted);opacity:.3"></div><div class="bl">Q2&#x27;24</div></div>
+      <div class="bg"><div class="bv">$85</div><div class="bar" style="height:16%;background:var(--muted);opacity:.35"></div><div class="bl">Q3&#x27;24</div></div>
+      <div class="bg"><div class="bv">$88</div><div class="bar" style="height:17%;background:var(--muted);opacity:.35"></div><div class="bl">Q4&#x27;24</div></div>
+      <div class="bg"><div class="bv">$90</div><div class="bar" style="height:17%;background:var(--muted);opacity:.4"></div><div class="bl">Q1&#x27;25</div></div>
+      <div class="bg"><div class="bv">$80</div><div class="bar" style="height:15%;background:var(--muted);opacity:.4"></div><div class="bl">Q2&#x27;25&#x25BC;</div></div>
+      <div class="bg"><div class="bv">$130</div><div class="bar" style="height:25%;background:var(--red);opacity:.55"></div><div class="bl">Q3&#x27;25</div></div>
+      <div class="bg"><div class="bv">$175</div><div class="bar" style="height:33%;background:var(--red);opacity:.65"></div><div class="bl">Oct&#x27;25</div></div>
+      <div class="bg"><div class="bv">$250</div><div class="bar" style="height:47%;background:var(--red);opacity:.75"></div><div class="bl">Nov&#x27;25</div></div>
+      <div class="bg"><div class="bv">$300</div><div class="bar" style="height:57%;background:var(--red);opacity:.85"></div><div class="bl">Dec&#x27;25</div></div>
+      <div class="bg"><div class="bv">$430</div><div class="bar" style="height:81%;background:var(--red)"></div><div class="bl">Q1&#x27;26</div></div>
+      <div class="bg"><div class="bv">$529</div><div class="bar" style="height:100%;background:var(--amber)"></div><div class="bl">Now &#x25B2;</div></div>
     </div>
-    <div class="chart-foot">&#x26A0; Q1 2026 DRAM +90&#x2013;95% QoQ (record). Q2 2026 forecast: DRAM +63%, NAND +75% &#x2014; TrendForce</div>
+    <div class="chart-foot">&#x26A0; $80 low (Jun 2025) &#x2192; $529 today &#x2014; a 561% increase. Q2 2026 forecast: DRAM +63%, NAND +75% &#x2014; TrendForce / TechTimes Jun 5, 2026</div>
+  </div>
+
+  <div class="price-chart" style="margin-top:16px">
+    <div class="chart-head">DRAM Contract Price per Gigabit (USD) &#x2014; Dell COO / TrendForce data</div>
+    <div class="chart-bars">
+      <div class="bg"><div class="bv">$0.35</div><div class="bar" style="height:15%;background:var(--muted);opacity:.35"></div><div class="bl">Q2&#x27;25&#x25BC;</div></div>
+      <div class="bg"><div class="bv">$0.43</div><div class="bar" style="height:18%;background:var(--muted);opacity:.4"></div><div class="bl">Q3&#x27;25</div></div>
+      <div class="bg"><div class="bv">$0.85</div><div class="bar" style="height:36%;background:var(--red);opacity:.6"></div><div class="bl">Oct&#x27;25</div></div>
+      <div class="bg"><div class="bv">$1.20</div><div class="bar" style="height:50%;background:var(--red);opacity:.7"></div><div class="bl">Dec&#x27;25</div></div>
+      <div class="bg"><div class="bv">$1.80</div><div class="bar" style="height:75%;background:var(--red);opacity:.85"></div><div class="bl">Q1&#x27;26</div></div>
+      <div class="bg"><div class="bv">$2.39</div><div class="bar" style="height:100%;background:var(--amber)"></div><div class="bl">Now &#x25B2;</div></div>
+    </div>
+    <div class="chart-foot">&#x26A0; $0.43/Gb &#x2192; $2.39/Gb &#x2014; a 456% increase in under 9 months. &#x201C;Never witnessed costs escalating at this pace&#x201D; &#x2014; Dell COO Jeff Clarke</div>
   </div>
 
   <p><strong>OpenAI&#x27;s Stargate Project</strong> alone is expected to consume up to <strong>40% of global DRAM output</strong>, requiring approximately 900,000 wafers per month. Cloud giants placed open-ended supply agreements, absorbing chips before smaller buyers could access them.</p>
@@ -286,7 +300,7 @@
     <a class="news-card" href="https://www.bloomberg.com/news/articles/2026-02-15/rampant-ai-demand-for-memory-is-fueling-a-growing-chip-crisis" target="_blank" rel="noopener"><div class="ns">Bloomberg</div><div class="nt">AI Boom Driving a Global Memory Chip Shortage, Sending Prices Soaring</div><span class="ntag">Breaking</span><div class="nd">Feb 15, 2026 &#x2014; Musk &amp; Cook warn of crisis</div></a>
     <a class="news-card" href="https://en.wikipedia.org/wiki/2024%E2%80%932026_global_memory_supply_shortage" target="_blank" rel="noopener"><div class="ns">Wikipedia</div><div class="nt">2024&#x2013;2026 Global Memory Supply Shortage &#x2014; Full Overview</div><span class="ntag am">Reference</span><div class="nd">Continuously updated &#x2014; comprehensive timeline</div></a>
     <a class="news-card" href="https://www.idc.com/resource-center/blog/global-memory-shortage-crisis-market-analysis-and-the-potential-impact-on-the-smartphone-and-pc-markets-in-2026/" target="_blank" rel="noopener"><div class="ns">IDC</div><div class="nt">Global Memory Shortage: Impact on Smartphones and PCs in 2026</div><span class="ntag am">Analysis</span><div class="nd">Feb 10, 2026 &#x2014; Market scenarios &amp; forecasts</div></a>
-    <a class="news-card" href="https://bisi.org.uk/reports/global-ram-shortage-and-price-hikes-causes-consequences-and-market-outlook" target="_blank" rel="noopener"><div class="ns">BISI</div><div class="nt">Global RAM Shortage: Causes, Consequences &amp; Market Outlook</div><span class="ntag">Deep Dive</span><div class="nd">Feb 1, 2026 &#x2014; DRAM +171%, DDR5 quadrupled</div></a>
+    <a class="news-card" href="https://bisi.org.uk/reports/global-ram-shortage-and-price-hikes-causes-consequences-and-market-outlook" target="_blank" rel="noopener"><div class="ns">BISI</div><div class="nt">Global RAM Shortage: Causes, Consequences &amp; Market Outlook</div><span class="ntag">Deep Dive</span><div class="nd">Feb 1, 2026 &#x2014; Root causes, supply collapse, market outlook</div></a>
     <a class="news-card" href="https://spectrum.ieee.org/dram-shortage" target="_blank" rel="noopener"><div class="ns">IEEE Spectrum</div><div class="nt">How and When the Memory Chip Shortage Will End</div><span class="ntag gr">Recovery</span><div class="nd">Mar 9, 2026 &#x2014; New fabs won&#x27;t help until 2027+</div></a>
     <a class="news-card" href="https://intuitionlabs.ai/articles/ram-shortage-2025-ai-demand" target="_blank" rel="noopener"><div class="ns">IntuitionLabs</div><div class="nt">RAM Shortage 2025: How AI Demand is Raising DRAM Prices</div><span class="ntag am">Technical</span><div class="nd">Dec 2, 2025 &#x2014; Fab timelines, rationing, HBM explained</div></a>
     <a class="news-card" href="https://www.z2data.com/insights/how-ai-forces-are-spurring-a-memory-chip-shortage" target="_blank" rel="noopener"><div class="ns">Z2Data</div><div class="nt">How AI Forces Are Spurring a Memory Chip Shortage</div><span class="ntag">Supply Chain</span><div class="nd">2025 &#x2014; HBM cannibalisation &amp; procurement impact</div></a>
@@ -301,7 +315,7 @@
   <h2>Spread<br/>the Word</h2>
   <p>People are buying hardware right now without knowing prices are at historic highs. Share this page.</p>
   <div class="share-btns">
-    <a class="sbtn tw" href="https://twitter.com/intent/tweet?text=RAM+prices+up+171%25+YoY.+DDR5+quadrupled.+2-week+global+inventory.+RAMmageddon+is+real.+%23RAMcrisis+%23RAMmageddon&url=https://jains99.github.io/aiatemyram/" target="_blank" rel="noopener">&#x1D54F; Share on X</a>
+    <a class="sbtn tw" href="https://twitter.com/intent/tweet?text=DDR5+32GB+kit%3A+%2480+%E2%86%92+%24529+in+one+year.+DRAM+%2B90%25+in+a+single+quarter.+RAMmageddon+is+real.+%23RAMcrisis+%23RAMmageddon&url=https://jains99.github.io/aiatemyram/" target="_blank" rel="noopener">&#x1D54F; Share on X</a>
     <a class="sbtn li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://jains99.github.io/aiatemyram/" target="_blank" rel="noopener">in Share on LinkedIn</a>
     <button class="sbtn cp" onclick="copyLink()">&#x1F517; Copy Link</button>
   </div>
@@ -321,7 +335,7 @@ function copyLink(){
   });
 }
 function shareNow(){
-  window.open('https://twitter.com/intent/tweet?text=DRAM+up+171%25.+DDR5+quadrupled.+2-week+global+inventory.+RAMmageddon+is+real.+%23RAMcrisis&url=https://jains99.github.io/aiatemyram/','_blank');
+  window.open('https://twitter.com/intent/tweet?text=DDR5+32GB+kit%3A+%2480+%E2%86%92+%24529+in+one+year.+DRAM+%2B90%25+in+a+single+quarter.+RAMmageddon+is+real.+%23RAMcrisis&url=https://jains99.github.io/aiatemyram/','_blank');
 }
 </script>
 </body>
